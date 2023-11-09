@@ -74,7 +74,7 @@
     </div>
 
     <!-- Easy Temp -->
-    <div class="container-fluid easy-temp bg-light p-3">
+    <div class="container-fluid easy-temp bg-light p-3" id="bsrowone">
         <h1 class="text-center">Easy Temp</h1>
         <div class="container-lg">
             <div class="row mt-4">
@@ -115,7 +115,7 @@
         </div>
         <div class="container-lg d-flex justify-content-center justify-content-evenly mt-4">
             <button onclick="getTemperature()" class="btn btn-outline-primary">Solve</button>
-            <button onclick="location.reload()" class="btn btn-outline-danger">Reset</button>
+            <button onclick="easyTempReset()" class="btn btn-outline-danger">Reset</button>
         </div>
         <div id="result" class="text-center form-control mt-2 text-muted">Result will displayed here...</div>
     </div>
@@ -131,7 +131,7 @@
     </div>
 
     <!-- Easy Guess -->
-    <div class="container-fluid easy-guess p-3 bg-light">
+    <div class="container-fluid easy-guess p-3 bg-light" id="bscon">
         <h1 class="text-center">Easy Guess</h1>
         <div id="name" class="text-center"></div>
         <p class="text-muted text-center">Guess a number between 1 and 100</p>
@@ -139,7 +139,7 @@
             <input type="text" name="" id="input" placeholder="Type a Number" class="form-control">
             <div class="row d-flex">
                 <button id="sres"  class="btn btn-outline-success my-1 col-9">Show Result</button>
-                <button onclick="location.reload()" class="btn btn-outline-danger my-1 col-3">Reset<i class="bi bi-arrow-clockwise"></i></button>
+                <button onclick="easyGuessReset()" class="btn btn-outline-danger my-1 col-3">Reset<i class="bi bi-arrow-clockwise"></i></button>
             </div>
         </div>
         
@@ -774,6 +774,56 @@
     const kelvinTwo = document.getElementById("k2")
     const temperatureResult = document.getElementById("result")
 
+    const resetOutputOne = document.getElementById("bsrowone")
+
+    function easyTempReset(){
+      resetOutputOne.innerHTML = `
+        <h1 class="text-center">Easy Temp</h1>
+        <div class="container-lg">
+            <div class="row mt-4">
+                <input type="number" name="" id="number" class="form-control col-lg-6" placeholder="Enter a Number">
+            </div>
+        </div>
+    
+    
+        <div class="container-md">
+          <div class="row">
+            <div class="col-lg-6 text-center mt-4">
+                <h4>Convert from:</h4>
+            
+                <input type="radio" name="p1" id="c1" class="form-check-input">
+                <label for="c1">Celsius</label><br>
+            
+            
+                <input type="radio" name="p1" id="f1" class="form-check-input">
+                <label for="f1">Farenheit</label><br>
+            
+                <input type="radio" name="p1" id="k1" class="form-check-input">
+                <label for="k1">Kelvin</label>
+            </div>
+            <div class="col-lg-6 text-center mt-4">
+                <h4>Convert to:</h4>
+            
+                <input type="radio" name="p2" id="c2" class="form-check-input">
+                <label for="c2">Celsius</label><br>
+            
+            
+                <input type="radio" name="p2" id="f2" class="form-check-input">
+                <label for="f2">Farenheit</label><br>
+            
+                <input type="radio" name="p2" id="k2" class="form-check-input">
+                <label for="k2">Kelvin</label>
+            </div>
+        </div>
+        </div>
+        <div class="container-lg d-flex justify-content-center justify-content-evenly mt-4">
+            <button onclick="getTemperature()" class="btn btn-outline-primary">Solve</button>
+            <button onclick="easyTempReset()" class="btn btn-outline-danger">Reset</button>
+        </div>
+        <div id="result" class="text-center form-control mt-2 text-muted">Result will displayed here...</div>
+      `
+    }
+
     function getTemperature(){
         if (celsiusOne.checked && farenheitTwo.checked) {
             temperatureResult.innerText = parseInt(inputField.value) * 9/5 + 32 + "°F"
@@ -812,6 +862,29 @@
 
     let name = document.getElementById("name")
     name.innerText = "Welcome "
+
+    const egCon = document.getElementById("bscon")
+    function easyGuessReset(){
+      egCon.innerHTML = `
+        <h1 class="text-center">Easy Guess</h1>
+        <div id="name" class="text-center"></div>
+        <p class="text-muted text-center">Guess a number between 1 and 100</p>
+        <div class="container-fluid">
+            <input type="text" name="" id="input" placeholder="Type a Number" class="form-control">
+            <div class="row d-flex">
+                <button id="sres"  class="btn btn-outline-success my-1 col-9">Show Result</button>
+                <button onclick="location.reload()" class="btn btn-outline-danger my-1 col-3">Reset<i class="bi bi-arrow-clockwise"></i></button>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-control my-2">Result: <span id="res"></span></div>
+                
+            </div>
+        </div>
+      `
+    }
 
     resultBtn.addEventListener("click", function () {
         console.log("Your input is ", myInput.value)
